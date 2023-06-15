@@ -100,19 +100,29 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 eval "$(starship init zsh)"
-export AWS_PROFILE=altacucina
 
 source <(kubectl completion zsh)
 
 compdef kubecolor=kubectl
 complete -o default -F __start_kubectl k
 
-
+# KUBECTL
 alias kubectl="kubecolor"
 alias k="kubectl"
+
+# VIM
 alias v="lvim"
+
+# LS
 alias ls="exa --icons --group-directories-first"
 alias ll="exa --icons --group-directories-first -lhgb --no-time "
+
+# GIT 
+# Deletes all branches not on remote
+alias gd="git branch --merged | xargs git branch -d"
+alias ga="git add"
+alias gc="git commit"
+alias gp="git push"
 
 # Generated for envman. Do not edit.
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
