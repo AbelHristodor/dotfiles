@@ -5,9 +5,14 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
-
+  environment.extraInit = ''
+    # Do not want this in the environment. NixOS always sets it and does not
+    # provide any option not to, so I must unset it myself via the
+    # environment.extraInit option.
+    unset -v SSH_ASKPASS
+  '';
+  
   nixpkgs.config.allowUnfree = true;
-
   nixpkgs.config.permittedInsecurePackages = [
                 "electron-12.2.3"
   ];
@@ -52,6 +57,8 @@
 
   services.xserver.libinput.enable = true; # Touchpad support
   services.xserver.libinput.touchpad.naturalScrolling = true;
+
+  services.gnome.gnome-keyring.enable = true;
 
   ##### Configuration #####
 
@@ -123,6 +130,15 @@
      ];
 
 
+  programs.git = {
+    enable = true;
+    config = {
+      credential.helper = "${
+          pkgs.git.override { withLibsecret = true; }
+        }/bin/git-credential-libsecret";
+    };
+  };
+  
   services.openssh.enable = true;
   networking.firewall.enable = false;
 
