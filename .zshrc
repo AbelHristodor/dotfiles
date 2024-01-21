@@ -10,6 +10,9 @@ plugins=(
   git
   zsh-autosuggestions
   zsh-syntax-highlighting
+  docker-zsh-completion
+  poetry-env
+  poetry
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -36,6 +39,9 @@ alias ll="exa --icons --group-directories-first -lhgb --no-time"
 
 # Vim
 alias v="nvim"
+
+# Kubectl
+alias k="kubectl"
 
 # Git
 alias ga="git add"
