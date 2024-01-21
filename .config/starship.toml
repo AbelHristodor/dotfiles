@@ -50,10 +50,12 @@ truncation_length = 5
 truncation_symbol = "…/"
 style = "bold green"
 
+[git_commit]
+tag_symbol = '\ueafc'
+
 [git_status]
 format = '[\($all_status$ahead_behind\)]($style) '
 style = "bold green"
-conflicted = "🏳"
 up_to_date = " "
 untracked = " "
 ahead = "⇡${count}"
@@ -78,8 +80,8 @@ format = "via [ $context](blue bold) "
 format = "via [ $version](bold purple) "
 
 [python]
-symbol = "🐍 "
-python_binary = "python3"
+symbol = "\ue73c "
+pyenv_version_name = true
 
 [nodejs]
 format = "via [ $version](bold green) "
