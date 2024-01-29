@@ -31,6 +31,11 @@ eval "$(pyenv init -)"
 # Local bin
 export PATH="/home/norte/.local/bin:$PATH"
 
+# Start tmux -- Install TPM first!!
+# if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+#   exec tmux
+# fi
+
 ########### ALIASES ##########
 
 # Exa - ls alternative
@@ -48,7 +53,23 @@ alias ga="git add"
 alias gc="git commit"
 alias gp="git push"
 
+# Tmux
+alias tn="tmux new -s"
+alias ta="tmux a -t"
+alias tk="tmux kill-session -t"
 
+# Lazygit
+alias lg="lazygit"
+lzg () {
+    export LAZYGIT_NEW_DIR_FILE=~/.lazygit/newdir
+
+    lazygit "$@"
+
+    if [ -f "$LAZYGIT_NEW_DIR_FILE" ]; then
+        cd "$(cat "$LAZYGIT_NEW_DIR_FILE")"
+        rm -f "$LAZYGIT_NEW_DIR_FILE" > /dev/null
+    fi
+}
 ########### EXPORTS #########
 #
 export NVM_DIR="$HOME/.nvm"
