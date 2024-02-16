@@ -70,9 +70,6 @@ deleted = " "
 [terraform]
 format = "via [ terraform $version]($style) 壟 [$workspace]($style) "
 
-[vagrant]
-format = "via [ vagrant $version]($style) "
-
 [docker_context]
 format = "via [ $context](blue bold) "
 
@@ -86,21 +83,22 @@ pyenv_version_name = true
 [nodejs]
 format = "via [ $version](bold green) "
 
-[ruby]
-format = "via [ $version]($style) "
-
 [aws]
 format = 'on [☁️ ($profile)(\($region\) )(\[$duration\] )]($style)'
 [aws.region_aliases]
-"eu-central-1" = "eu-central"
+"eu-central-1" = "ec1"
 [aws.profile_aliases]
 "<profile>" = "<alias>" # requires .aws/credentials with profile
 
 [gcloud]
 disabled = false
+symbol = "☁️ "
+format = 'on [$symbol$account(@$domain)(\($project\))]($style) '
 
 [kubernetes]
-format = 'on [ $context\($namespace\)](bold purple) '
 disabled = false
+format = 'on [$symbol$context\($namespace\)](bold purple) '
+symbol = "☸ "
+
 [kubernetes.context_aliases]
 "gke_alta-cluster-386114_europe-west8_alta-master-cluster()" = "alta-master-cluster"

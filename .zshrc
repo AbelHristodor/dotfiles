@@ -45,8 +45,17 @@ alias ll="exa --icons --group-directories-first -lhgb --no-time"
 # Vim
 alias v="nvim"
 
-# Kubectl
+# Kubectl or Kubecolor
 alias k="kubectl"
+alias ktx="kubectl ctx"
+alias kns="kubectl ns"
+alias kpop="popeye"
+alias stern="kubectl stern"
+
+## Check if kubecolor is installed
+if which kubecolor >/dev/null 2&>1;then
+    alias k="kubecolor"
+fi
 
 # Git
 alias ga="git add"
@@ -83,3 +92,6 @@ if [ -f '/home/norte/google-cloud-sdk/path.bash.inc' ]; then . '/home/norte/goog
 if [ -f '/home/norte/google-cloud-sdk/completion.bash.inc' ]; then . '/home/norte/google-cloud-sdk/completion.bash.inc'; fi
 export PATH=$PATH:/home/norte/.spicetify
 . "$HOME/.cargo/env"
+
+# krew path
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
