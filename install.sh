@@ -2,12 +2,21 @@
 
 # Install the required packages
 
+# install wezterm
+curl -LO https://github.com/wez/wezterm/releases/download/20240203-110809-5046fc22/WezTerm-20240203-110809-5046fc22-Ubuntu20.04.AppImage
+chmod +x WezTerm-20240203-110809-5046fc22-Ubuntu20.04.AppImage
+
+mv mv ./WezTerm-20240203-110809-5046fc22-Ubuntu20.04.AppImage /usr/local/bin/wezterm
+
 #### Basic Utilities ####
 # Git: https://git-scm.com/download/linux
 sudo apt-get install -y git
 
 # Zsh: https://github.com/ohmyzsh/ohmyzsh/wiki/Installing-ZSH
-apt install zsh
+apt install zsh just -y
+
+# Flameshot: https://flameshot.org/getting-started/
+apt install flameshot
 
 # Oh My Zsh: https://ohmyz.sh/#install
 sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
@@ -33,7 +42,7 @@ source poetry.zsh
 curl https://pyenv.run | bash
 
 # Exa: https://the.exa.website/install/linux
-apt install exa
+apt install exa -y
 
 # Tmux's TPM Plugin Manager:
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
