@@ -20,7 +20,7 @@ config.font_size = 14.0
 config.harfbuzz_features = { "zero", "ss01", "cv05" }
 config.use_fancy_tab_bar = false
 config.enable_tab_bar = false
-config.config.window_close_confirmation = "NeverPrompt"
+config.window_close_confirmation = "NeverPrompt"
 config.disable_default_key_bindings = true
 config.keys = {
 	{key="v", mods="CTRL|SHIFT", action=wezterm.action{PasteFrom="Clipboard"}},

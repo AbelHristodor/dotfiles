@@ -17,9 +17,6 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
-# Autocorrect commands 
-eval $(thefuck --alias fu)
-
 # Starship
 eval "$(starship init zsh)"
 
@@ -53,7 +50,7 @@ alias kpop="popeye"
 alias stern="kubectl stern"
 
 ## Check if kubecolor is installed
-if which kubecolor >/dev/null 2&>1;then
+if which kubecolor >/dev/null 2>&1;then
     alias k="kubecolor"
 fi
 
