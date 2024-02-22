@@ -20,7 +20,14 @@ config.font_size = 14.0
 config.harfbuzz_features = { "zero", "ss01", "cv05" }
 config.use_fancy_tab_bar = false
 config.enable_tab_bar = false
+config.config.window_close_confirmation = "NeverPrompt"
 config.disable_default_key_bindings = true
+config.keys = {
+	{key="v", mods="CTRL|SHIFT", action=wezterm.action{PasteFrom="Clipboard"}},
+	{key="c", mods="CTRL|SHIFT", action=wezterm.action{CopyTo="Clipboard"}},
+	{key="=", mods="CTRL", action=wezterm.action.IncreaseFontSize},
+	{key="-", mods="CTRL", action=wezterm.action.DecreaseFontSize},
+}
 config.hyperlink_rules = {
 	-- Matches: a URL in parens: (URL)
 	{
