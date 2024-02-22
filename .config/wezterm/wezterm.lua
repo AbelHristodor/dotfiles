@@ -19,6 +19,7 @@ config.font = wezterm.font("Fira Code")
 config.font_size = 14.0
 config.harfbuzz_features = { "zero", "ss01", "cv05" }
 config.use_fancy_tab_bar = false
+config.enable_tab_bar = false
 config.disable_default_key_bindings = true
 config.hyperlink_rules = {
 	-- Matches: a URL in parens: (URL)
