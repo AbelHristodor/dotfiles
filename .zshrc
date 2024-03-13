@@ -76,6 +76,8 @@ lzg () {
         rm -f "$LAZYGIT_NEW_DIR_FILE" > /dev/null
     fi
 }
+# Ranger - file manager
+alias r="ranger"
 ########### EXPORTS #########
 #
 export NVM_DIR="$HOME/.nvm"

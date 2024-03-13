@@ -16,7 +16,10 @@ sudo apt-get install -y git
 apt install zsh just -y
 
 # Flameshot: https://flameshot.org/getting-started/
-apt install flameshot
+apt install flameshot -y
+
+# Ranger
+apt install ranger -y
 
 # Oh My Zsh: https://ohmyz.sh/#install
 sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
