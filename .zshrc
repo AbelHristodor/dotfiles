@@ -10,7 +10,6 @@ plugins=(
   git
   zsh-autosuggestions
   zsh-syntax-highlighting
-  docker-zsh-completion
   poetry-env
   poetry
 )
@@ -64,6 +63,9 @@ alias tn="tmux new -s"
 alias ta="tmux a -t"
 alias tk="tmux kill-session -t"
 
+# Minikube
+alias mk="minikube kubectl --"
+
 # Lazygit
 alias lg="lazygit"
 lzg () {
@@ -89,8 +91,17 @@ if [ -f '/home/norte/google-cloud-sdk/path.bash.inc' ]; then . '/home/norte/goog
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/home/norte/google-cloud-sdk/completion.bash.inc' ]; then . '/home/norte/google-cloud-sdk/completion.bash.inc'; fi
-export PATH=$PATH:/home/norte/.spicetify
-. "$HOME/.cargo/env"
+# export PATH=$PATH:/home/norte/.spicetify
+# . "$HOME/.cargo/env"
 
 # krew path
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+
+# Pandoc
+export PATH="/usr/bin/pandoc:$PATH"
+
+# Istio
+export PATH="$PATH:/home/abel/istio-1.21.0/bin"
+
+# Go
+export PATH="$PATH:$(go env GOPATH)/bin"

@@ -13,13 +13,13 @@ mv mv ./WezTerm-20240203-110809-5046fc22-Ubuntu20.04.AppImage /usr/local/bin/wez
 sudo apt-get install -y git
 
 # Zsh: https://github.com/ohmyzsh/ohmyzsh/wiki/Installing-ZSH
-apt install zsh just -y
+sudo apt install zsh just -y
 
 # Flameshot: https://flameshot.org/getting-started/
-apt install flameshot -y
+sudo apt install flameshot -y
 
 # Ranger
-apt install ranger -y
+sudo apt install ranger -y
 
 # Oh My Zsh: https://ohmyz.sh/#install
 sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"

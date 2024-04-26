@@ -14,19 +14,23 @@ config.window_padding = {
 }
 config.scrollback_lines = 3500
 config.enable_scroll_bar = true
-config.window_background_opacity = 0.7
+config.window_background_opacity = 0.85
 config.font = wezterm.font("Fira Code")
-config.font_size = 14.0
+config.font_size = 12.0
 config.harfbuzz_features = { "zero", "ss01", "cv05" }
 config.use_fancy_tab_bar = false
 config.enable_tab_bar = false
 config.window_close_confirmation = "NeverPrompt"
 config.disable_default_key_bindings = true
 config.keys = {
-	{key="v", mods="CTRL|SHIFT", action=wezterm.action{PasteFrom="Clipboard"}},
-	{key="c", mods="CTRL|SHIFT", action=wezterm.action{CopyTo="Clipboard"}},
-	{key="=", mods="CTRL", action=wezterm.action.IncreaseFontSize},
-	{key="-", mods="CTRL", action=wezterm.action.DecreaseFontSize},
+	{ key = "v", mods = "CTRL|SHIFT", action = wezterm.action { PasteFrom = "Clipboard" } },
+	{ key = "c", mods = "CTRL|SHIFT", action = wezterm.action { CopyTo = "Clipboard" } },
+	{ key = "=", mods = "CTRL",       action = wezterm.action.IncreaseFontSize },
+	{ key = "-", mods = "CTRL",       action = wezterm.action.DecreaseFontSize },
+	{
+		key = 'F11',
+		action = wezterm.action.ToggleFullScreen,
+	},
 }
 config.hyperlink_rules = {
 	-- Matches: a URL in parens: (URL)
