@@ -16,6 +16,9 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
+# FZF
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 # Starship
 eval "$(starship init zsh)"
 
@@ -28,15 +31,15 @@ eval "$(pyenv init -)"
 export PATH="/home/norte/.local/bin:$PATH"
 
 # Start tmux -- Install TPM first!!
-# if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
-#   exec tmux
-# fi
+if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+  exec tmux
+fi
 
 ########### ALIASES ##########
 
 # Exa - ls alternative
-alias ls="exa --icons --group-directories-first"
-alias ll="exa --icons --group-directories-first -lhgb --no-time"
+alias ls="eza --icons --group-directories-first"
+alias ll="eza --icons --group-directories-first -lhgb --no-time"
 
 # Vim
 alias v="nvim"
@@ -47,6 +50,8 @@ alias ktx="kubectl ctx"
 alias kns="kubectl ns"
 alias kpop="popeye"
 alias stern="kubectl stern"
+
+export KUBE_EDITOR="nvim"
 
 ## Check if kubecolor is installed
 if which kubecolor >/dev/null 2>&1;then
@@ -63,9 +68,6 @@ alias tn="tmux new -s"
 alias ta="tmux a -t"
 alias tk="tmux kill-session -t"
 
-# Minikube
-alias mk="minikube kubectl --"
-
 # Lazygit
 alias lg="lazygit"
 lzg () {
@@ -78,19 +80,18 @@ lzg () {
         rm -f "$LAZYGIT_NEW_DIR_FILE" > /dev/null
     fi
 }
+
+# Lazydocker
+alias lzd='lazydocker'
+
 # Ranger - file manager
 alias r="ranger"
+
 ########### EXPORTS #########
 #
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/norte/google-cloud-sdk/path.bash.inc' ]; then . '/home/norte/google-cloud-sdk/path.bash.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/home/norte/google-cloud-sdk/completion.bash.inc' ]; then . '/home/norte/google-cloud-sdk/completion.bash.inc'; fi
 # export PATH=$PATH:/home/norte/.spicetify
 # . "$HOME/.cargo/env"
 
@@ -104,4 +105,20 @@ export PATH="/usr/bin/pandoc:$PATH"
 export PATH="$PATH:/home/abel/istio-1.21.0/bin"
 
 # Go
+export PATH="$PATH:/usr/local/go/bin"
 export PATH="$PATH:$(go env GOPATH)/bin"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/abel/others/dotfiles/google-cloud-sdk/path.zsh.inc' ]; then . '/home/abel/others/dotfiles/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/abel/others/dotfiles/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/abel/others/dotfiles/google-cloud-sdk/completion.zsh.inc'; fi
+
+# Created by `pipx` on 2024-05-09 07:18:23
+export PATH="$PATH:/home/abel/.local/bin"
+
+autoload -U compinit; compinit
+
+# Istio
+export PATH="/home/abel/infra/istio-1.22.0/bin:$PATH"
+
