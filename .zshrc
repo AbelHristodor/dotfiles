@@ -16,9 +16,38 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
+########### FZF Config & Aliases##########
 # FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# Preview file content using bat (https://github.com/sharkdp/bat)
+export FZF_CTRL_T_OPTS="
+  --walker-skip .git,node_modules,target
+  --preview 'bat -n --color=always {}'
+  --bind 'ctrl-/:change-preview-window(down|hidden|)'"
+
+# CTRL-/ to toggle small preview window to see the full command
+# CTRL-Y to copy the command into clipboard using pbcopy
+export FZF_CTRL_R_OPTS="
+  --preview 'echo {}' --preview-window up:3:hidden:wrap
+  --bind 'ctrl-/:toggle-preview'
+  --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'
+  --color header:italic
+  --header 'Press CTRL-Y to copy command into clipboard'"
+
+# Print tree structure in the preview window
+export FZF_ALT_C_OPTS="
+  --walker-skip .git,node_modules,target
+  --preview 'tree -C {}'"
+
+# Use kubectl with fzf
+command -v fzf >/dev/null 2>&1 && { 
+	source <(kubectl completion zsh | sed 's#${requestComp} 2>/dev/null#${requestComp} 2>/dev/null | head -n -1 | fzf  --multi=0 #g')
+}
+
+compdef kubecolor=kubectl
+
+########### Other apps ##########
 # Starship
 eval "$(starship init zsh)"
 
@@ -31,10 +60,19 @@ eval "$(pyenv init -)"
 export PATH="/home/norte/.local/bin:$PATH"
 
 # Start tmux -- Install TPM first!!
-if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
-  exec tmux
-fi
+# if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+#   exec tmux
+# fi
 
+########### KUBERNETES ##########
+alias kdebug="kubectl run tmp-shell --rm -i --tty --image nicolaka/netshoot"
+alias k="kubectl"
+alias kctx="kubectl ctx"
+alias kns="kubectl ns"
+alias kpop="popeye"
+alias stern="kubectl stern"
+
+export KUBE_EDITOR="nvim"
 ########### ALIASES ##########
 
 # Exa - ls alternative
@@ -44,14 +82,6 @@ alias ll="eza --icons --group-directories-first -lhgb --no-time"
 # Vim
 alias v="nvim"
 
-# Kubectl or Kubecolor
-alias k="kubectl"
-alias ktx="kubectl ctx"
-alias kns="kubectl ns"
-alias kpop="popeye"
-alias stern="kubectl stern"
-
-export KUBE_EDITOR="nvim"
 
 ## Check if kubecolor is installed
 if which kubecolor >/dev/null 2>&1;then
@@ -88,12 +118,9 @@ alias lzd='lazydocker'
 alias r="ranger"
 
 ########### EXPORTS #########
-#
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
-# export PATH=$PATH:/home/norte/.spicetify
-# . "$HOME/.cargo/env"
 
 # krew path
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
