@@ -9,7 +9,7 @@ COMPLETION_WAITING_DOTS="true"
 plugins=(
   git
   zsh-autosuggestions
-  zsh-syntax-highlighting
+  fast-syntax-highlighting
   poetry-env
   poetry
 )
@@ -72,7 +72,14 @@ alias kns="kubectl ns"
 alias kpop="popeye"
 alias stern="kubectl stern"
 
+alias headlamp="headlamp --no-sandbox"
+
 export KUBE_EDITOR="nvim"
+
+# Kubebuilder autocomplete
+command -v kubebuilder >/dev/null 2>&1 && {
+    source <(kubebuilder completion zsh)
+}
 ########### ALIASES ##########
 
 # Exa - ls alternative
