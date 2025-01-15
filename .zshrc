@@ -80,7 +80,12 @@ export KUBE_EDITOR="nvim"
 command -v kubebuilder >/dev/null 2>&1 && {
     source <(kubebuilder completion zsh)
 }
+
+alias k8s-show-ns=" kubectl api-resources --verbs=list --namespaced -o name  | xargs -n 1 kubectl get --show-kind --ignore-not-found  -n"
+
 ########### ALIASES ##########
+# Bat - Cat alternative
+alias cat="bat"
 
 # Exa - ls alternative
 alias ls="eza --icons --group-directories-first"
@@ -98,7 +103,8 @@ fi
 # Git
 alias ga="git add"
 alias gc="git commit"
-alias gp="git push"
+alias gpl="git push"
+alias gsu="git submodule update --init --recursive"
 
 # Tmux
 alias tn="tmux new -s"
@@ -136,11 +142,12 @@ export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 export PATH="/usr/bin/pandoc:$PATH"
 
 # Istio
-export PATH="$PATH:/home/abel/istio-1.21.0/bin"
+export PATH="$PATH:/home/abel/istio-1.22.0/bin"
 
 # Go
 export PATH="$PATH:/usr/local/go/bin"
 export PATH="$PATH:$(go env GOPATH)/bin"
+export GOPATH="$(go env GOPATH)"
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/home/abel/others/dotfiles/google-cloud-sdk/path.zsh.inc' ]; then . '/home/abel/others/dotfiles/google-cloud-sdk/path.zsh.inc'; fi
@@ -153,6 +160,17 @@ export PATH="$PATH:/home/abel/.local/bin"
 
 autoload -U compinit; compinit
 
-# Istio
-export PATH="/home/abel/infra/istio-1.22.0/bin:$PATH"
+export PATH=/home/abel/istio-1.22.3/bin:/home/abel/istio-1.22.3/bin:/usr/bin/pandoc:/home/abel/.krew/bin:/home/abel/.nvm/versions/node/v20.12.2/bin:/home/norte/.local/bin:/home/abel/.pyenv/shims:/home/abel/bin:/usr/local/bin:/usr/bin/pandoc:/home/abel/.krew/bin:/home/abel/.nvm/versions/node/v20.12.2/bin:/home/norte/.local/bin:/home/abel/.pyenv/bin:/home/abel/bin:/usr/local/bin:/home/abel/.cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/abel/.local/bin:/home/abel/.local/bin:/home/abel/.fzf/bin:/home/abel/istio-1.22.0/bin:/usr/local/go/bin:/home/abel/go/bin:/home/abel/.local/bin:/home/abel/.local/bin:/home/abel/istio-1.22.0/bin:/usr/local/go/bin:/home/abel/go/bin:/home/abel/.local/bin
 
+# add Pulumi to the PATH
+export PATH=$PATH:/home/abel/.pulumi/bin
+
+gcloud_list_images() { local repo=$1; gcloud artifacts docker images list europe-west3-docker.pkg.dev/equixlycloud/private/$repo --limit=10 --include-tags --quiet --sort-by=~create_time --filter="tags:*" --format="table(tags, update_time)"; }
+eval "$(~/.local/bin/mise activate zsh)"
+
+# bun completions
+[ -s "/home/abel/.bun/_bun" ] && source "/home/abel/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
