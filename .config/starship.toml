@@ -15,7 +15,7 @@ error_symbol = "[✗](bold red)"
 
 # Shows an icon that should be included by zshrc script based on the distribution or os
 [env_var.STARSHIP_DISTRO]
-format = '[$env_value](bold white)'  # removed space between distro and rest for pwsh
+format = '[$env_value](bold white)' # removed space between distro and rest for pwsh
 variable = "STARSHIP_DISTRO"
 disabled = false
 
@@ -24,7 +24,7 @@ disabled = false
 style_user = "white bold"
 style_root = "black bold"
 format = "[$user]($style) "
-disabled = false  # disable in powershell
+disabled = false            # disable in powershell
 show_always = false
 
 [directory]
@@ -99,12 +99,13 @@ format = 'on [ ($profile)(\($region\) )(\[$duration\] )]($style)'
 [gcloud]
 disabled = false
 symbol = " "
-format = 'on [$symbol$account(@$domain)(\($project\))]($style) '
+format = 'on [$symbol(@$domain)(\($project\))]($style) '
 
 [kubernetes]
 disabled = false
 format = 'on [$symbol$context\($namespace\)](bold purple) '
 symbol = "󱃾 "
 
-[kubernetes.context_aliases]
-"gke_alta-cluster-386114_europe-west8_alta-master-cluster()" = "alta-master-cluster"
+[[kubernetes.contexts]]
+context_pattern = "gke_.*_(?P<cluster>[\\w-]+)"
+context_alias = "$cluster"

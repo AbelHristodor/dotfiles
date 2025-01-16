@@ -141,9 +141,6 @@ export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 # Pandoc
 export PATH="/usr/bin/pandoc:$PATH"
 
-# Istio
-export PATH="$PATH:/home/abel/istio-1.22.0/bin"
-
 # Go
 export PATH="$PATH:/usr/local/go/bin"
 export PATH="$PATH:$(go env GOPATH)/bin"
@@ -157,13 +154,7 @@ if [ -f '/home/abel/others/dotfiles/google-cloud-sdk/completion.zsh.inc' ]; then
 
 # Created by `pipx` on 2024-05-09 07:18:23
 export PATH="$PATH:/home/abel/.local/bin"
-
 autoload -U compinit; compinit
-
-export PATH=/home/abel/istio-1.22.3/bin:/home/abel/istio-1.22.3/bin:/usr/bin/pandoc:/home/abel/.krew/bin:/home/abel/.nvm/versions/node/v20.12.2/bin:/home/norte/.local/bin:/home/abel/.pyenv/shims:/home/abel/bin:/usr/local/bin:/usr/bin/pandoc:/home/abel/.krew/bin:/home/abel/.nvm/versions/node/v20.12.2/bin:/home/norte/.local/bin:/home/abel/.pyenv/bin:/home/abel/bin:/usr/local/bin:/home/abel/.cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/abel/.local/bin:/home/abel/.local/bin:/home/abel/.fzf/bin:/home/abel/istio-1.22.0/bin:/usr/local/go/bin:/home/abel/go/bin:/home/abel/.local/bin:/home/abel/.local/bin:/home/abel/istio-1.22.0/bin:/usr/local/go/bin:/home/abel/go/bin:/home/abel/.local/bin
-
-# add Pulumi to the PATH
-export PATH=$PATH:/home/abel/.pulumi/bin
 
 gcloud_list_images() { local repo=$1; gcloud artifacts docker images list europe-west3-docker.pkg.dev/equixlycloud/private/$repo --limit=10 --include-tags --quiet --sort-by=~create_time --filter="tags:*" --format="table(tags, update_time)"; }
 eval "$(~/.local/bin/mise activate zsh)"
